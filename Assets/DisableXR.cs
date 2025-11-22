@@ -1,28 +1,32 @@
 using UnityEngine;
-using UnityEngine.SubsystemsImplementation;
+using UnityEngine.XR.Management;
+using UnityEngine.SubsystemsImplementation; // Include this namespace
+using System.Collections.Generic; // May be required for XRManagerSettings
 
-public class DisableXR
+public class DisableXR : MonoBehaviour
 {
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
-    static void DisableXRSubsystems()
+    void Awake()
     {
-        try
+        Debug.Log("Disabling XR...");
+        
+        // --- FIX FOR CS0103 / CS1069 ---
+        // This attempts to disable the XR systems directly.
+        
+        // This typically works for modern Unity versions:
+        if (XRGeneralSettings.Instance != null && XRGeneralSettings.Instance.Manager != null)
         {
-            var instances = SubsystemManager.GetInstances<IntegratedSubsystem>();
-            foreach (var inst in instances)
-            {
-                var id = inst.SubsystemDescriptor?.id;
-                if (id != null && id.ToLower().Contains("xr"))
-                {
-                    Debug.Log("Disabling XR subsystem: " + id);
-                    inst.Stop();
-                    inst.Destroy();
-                }
-            }
+            XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+            Debug.Log("XR Loader Deinitialized.");
         }
-        catch
+        else
         {
-            // No XR subsystems, safe to ignore
+            Debug.LogWarning("XR General Settings or Manager not found, cannot explicitly deinitialize XR.");
         }
+        
+        // Old (and less necessary) way using SubsystemManager, might still fail without package:
+        // SubsystemManager.GetSubsystems<IntegratedSubsystem>().ForEach(s => s.Stop());
+        
+        // If the above code causes issues, delete the entire block in Awake.
+        // However, this version should include the correct namespace.
     }
 }
