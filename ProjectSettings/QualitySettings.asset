@@ -1,0 +1,7 @@
+%YAML 1.1
+QualitySettings:
+  m_QualitySettings:
+    - name: Low
+    - name: Medium
+    - name: High
+  m_CurrentQuality: 1
