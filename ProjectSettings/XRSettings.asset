@@ -1,2 +1,3 @@
+%YAML 1.1
 XRSettings:
-  m_InitManagerOnStart: 0
+  m_InitializeXROnStartup: 0
