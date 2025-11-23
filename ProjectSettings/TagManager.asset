@@ -1,0 +1,10 @@
+%YAML 1.1
+TagManager:
+  tags: []
+  layers:
+    - Default
+    - TransparentFX
+    - Ignore Raycast
+    - 
+    - Water
+    - UI
