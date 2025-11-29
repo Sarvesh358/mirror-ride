@@ -1,8 +1,22 @@
 %YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!30 &1
 GraphicsSettings:
+  m_ObjectHideFlags: 0
   m_AlwaysIncludedShaders: []
   m_PreloadedShaders: []
-  m_CustomRenderPipeline: {fileID: 0}
   m_SpritesDefaultMaterial: {fileID: 0}
-  m_TransparencySortMode: 0
-  m_TransparencySortAxis: {x: 0, y: 0, z: 1}
+  m_CustomRenderPipeline: {fileID: 1}
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_Name: UniversalRenderPipelineAsset
+  m_EditorClassIdentifier: UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset
+  m_RendererDataList:
+  - {fileID: 2}
+  m_DefaultRendererIndex: 0
+--- !u!114 &2
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_Name: UniversalRendererData
+  m_EditorClassIdentifier: UnityEngine.Rendering.Universal.UniversalRendererData
